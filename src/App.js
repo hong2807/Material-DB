@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { Fragment, useState } from 'react';
+import {Header, Footer} from './Components/Layouts/Layouts';
+import Exercises from './Components/Exercises/Exercises';
+import {exercises, muscles} from './store';
 
 function App() {
+  const [task,useTask] = useState(exercises);
+
+  const getExercisesByMuscles = () => {
+    return Object.entries(
+      task.reduce((newExercises,item,index) => {
+      
+      const { muscles } = item;
+      
+      newExercises[muscles] = newExercises[muscles] ? [...newExercises[muscles],item] : [item]
+
+      return newExercises
+    }, {})
+    )
+  }
+
+  console.log(getExercisesByMuscles());
+
+  const onSelect = (value)  => {
+    console.log(value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header></Header>                         
+
+      <Exercises exercises={getExercisesByMuscles()}></Exercises>
+
+      <Footer muscles={muscles} onSelect={onSelect}></Footer>
+    </Fragment>
   );
 }
 
