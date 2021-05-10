@@ -2,10 +2,13 @@ import './App.css';
 import { Fragment, useState } from 'react';
 import {Header, Footer} from './Components/Layouts/Layouts';
 import Exercises from './Components/Exercises/Exercises';
+import BaiTap from './Components/BaiTap/';
 import {exercises, muscles} from './store';
 
 function App() {
-  const [task,useTask] = useState(exercises);
+  const [task, setTask] = useState(exercises);
+
+  const [muscleType, setMuscleType] = useState('');
 
   const getExercisesByMuscles = () => {
     return Object.entries(
@@ -24,13 +27,15 @@ function App() {
 
   const onSelect = (value)  => {
     console.log(value);
+    setMuscleType(value);
   }
 
   return (
     <Fragment>
       <Header></Header>                         
 
-      <Exercises exercises={getExercisesByMuscles()}></Exercises>
+      <Exercises exercises={getExercisesByMuscles()} muscleType={muscleType}></Exercises>
+      <BaiTap></BaiTap>
 
       <Footer muscles={muscles} onSelect={onSelect}></Footer>
     </Fragment>
@@ -38,3 +43,7 @@ function App() {
 }
 
 export default App;
+
+
+// Khi import bất kì component nào mà trong component đó có file index.js thì chỉ cần import tới thằng cha chứa file index.js là tự động nó hiểu component đó file chính là index.js
+// Trong trường hợp file index.js mà đổi thành tên khác thì phải import chi tiết tới file cần import thì nó mới hiểu

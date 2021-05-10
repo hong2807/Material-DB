@@ -15,7 +15,8 @@ export default function Footer(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    props.onSelect(newValue);
+    let muscleType = props.muscles[newValue - 1];
+    props.onSelect(muscleType);
   };
 
   
@@ -31,7 +32,7 @@ export default function Footer(props) {
       >
         <Tab label="All" />
         {props.muscles.map((group,index) => 
-          <Tab label={group} key={index} />
+            <Tab label={group} key={index} />
         )}
       </Tabs>
     </Paper>

@@ -16,10 +16,12 @@ const styles = {
 
 export default function Exercises (props) {
   console.log('hong',props.exercises);
+  console.log('hong',props.exercises[0][0]);
+ 
   return (
     <Grid container>
       <Grid item sm={4}>
-        <LeftPane styles={styles} exercises={props.exercises}></LeftPane>
+        <LeftPane styles={styles} exercises={props.exercises} muscleType={props.muscleType}></LeftPane>
         
       </Grid>
       <Grid item sm={8}>
