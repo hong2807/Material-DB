@@ -7,9 +7,7 @@ import RightPane from './RightPane';
 const styles = {
   Paper: { 
     padding: 20, 
-    marginTop: 10, 
-    marginBottom: 10, 
-    height: 500, 
+    height: 513,
     overflowY: 'auto'
   }
 }
@@ -19,13 +17,13 @@ export default function Exercises (props) {
   console.log('hong',props.exercises[0][0]);
  
   return (
-    <Grid container>
-      <Grid item sm={4}>
-        <LeftPane styles={styles} exercises={props.exercises} muscleType={props.muscleType}></LeftPane>
+    <Grid container style={{ height: 'calc(100vh - 64px - 48px)'}}>
+      <Grid item sm={4} style={{ height: '100%'}}>
+        <LeftPane styles={styles} exercises={props.exercises} muscleType={props.muscleType} onSelectDescription={props.onSelectDescription}></LeftPane>
         
       </Grid>
-      <Grid item sm={8}>
-        <RightPane styles={styles}></RightPane>
+      <Grid item sm={8} style={{ height: '100%'}}>
+        <RightPane exercises={props.exercises} descriptionType={props.descriptionType}></RightPane>
       </Grid>
     </Grid>
   )

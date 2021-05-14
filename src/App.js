@@ -2,13 +2,15 @@ import './App.css';
 import { Fragment, useState } from 'react';
 import {Header, Footer} from './Components/Layouts/Layouts';
 import Exercises from './Components/Exercises/Exercises';
-import BaiTap from './Components/BaiTap/';
+// import BaiTap from './Components/BaiTap/';
 import {exercises, muscles} from './store';
 
 function App() {
   const [task, setTask] = useState(exercises);
 
   const [muscleType, setMuscleType] = useState('');
+
+  const [descriptionType, setDescriptionType] = useState('');
 
   const getExercisesByMuscles = () => {
     return Object.entries(
@@ -30,12 +32,17 @@ function App() {
     setMuscleType(value);
   }
 
+  const onSelectDescription = (title)  => {
+    console.log(title);
+    setDescriptionType(title);
+  }
+
   return (
     <Fragment>
       <Header></Header>                         
 
-      <Exercises exercises={getExercisesByMuscles()} muscleType={muscleType}></Exercises>
-      <BaiTap></BaiTap>
+      <Exercises exercises={getExercisesByMuscles()} muscleType={muscleType} onSelectDescription={onSelectDescription} descriptionType={descriptionType}></Exercises >
+      {/* <BaiTap></BaiTap> */}
 
       <Footer muscles={muscles} onSelect={onSelect}></Footer>
     </Fragment>

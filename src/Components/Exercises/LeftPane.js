@@ -42,7 +42,7 @@ export default function LeftPane(props) {
             <List component="nav" aria-label="secondary mailbox folders">
               {item.map((value,index) => 
                 <ListItem button key={index}>
-                  <ListItemText primary={value.title} />
+                  <ListItemText primary={value.title} onClick = {() => props.onSelectDescription(value.title)}/>
                 </ListItem>
               )}
             </List>
